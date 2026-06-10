@@ -1,1 +1,4 @@
-export interface Sexo {}
+export interface Sexo {
+  idSexo:string;
+  descripcion: string;
+}

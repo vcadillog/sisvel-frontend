@@ -10,7 +10,7 @@ import { Sexo } from '../model/sexo';
 export class SexoService {
   private http=inject(HttpClient)
 
-  getTipoDocumento():Observable<Sexo[]>{
+  getSexo():Observable<Sexo[]>{
     return this.http.get<Sexo[]>(`${environment.url}/sexo`);
   }
 

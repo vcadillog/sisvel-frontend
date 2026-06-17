@@ -1,5 +1,3 @@
-/* Estilos para el módulo de Pedidos */
-
 .card {
   border: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -10,7 +8,6 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Tarjetas de estadísticas */
 .card .card-body h6 {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -23,7 +20,6 @@
   font-weight: 700;
 }
 
-/* Colores de texto personalizados */
 .text-warning {
   color: #ffc107 !important;
 }
@@ -40,7 +36,6 @@
   color: #dc3545 !important;
 }
 
-/* Tabla de pedidos */
 .table td {
   vertical-align: middle;
 }
@@ -55,7 +50,6 @@
   background-color: #f8f9fa;
 }
 
-/* Badges de estado */
 .badge {
   font-weight: 500;
   padding: 0.4rem 0.8rem;
@@ -89,7 +83,6 @@
   background-color: #6c757d !important;
 }
 
-/* Botones de acciones */
 .btn-group-sm .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
@@ -141,14 +134,12 @@
   border-color: #ffc720;
 }
 
-/* Formulario */
 .form-control:focus,
 .form-select:focus {
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
   border-color: #86b7fe;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .table-responsive {
     font-size: 0.85rem;
@@ -184,7 +175,6 @@
   }
 }
 
-/* Animaciones */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -216,7 +206,6 @@
   animation: pulse 2s infinite;
 }
 
-/* Scrollbar personalizado para la tabla */
 .table-responsive::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -236,14 +225,12 @@
   background: #a8a8a8;
 }
 
-/* Espaciado para el formulario */
 .form-label {
   font-weight: 500;
   font-size: 0.875rem;
   color: #495057;
 }
 
-/* Mejoras visuales para el estado */
 tr .badge {
   min-width: 75px;
   text-align: center;

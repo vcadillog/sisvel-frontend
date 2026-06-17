@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   currentUser: User | null = null;
   currentDate: Date = new Date();
 
-  // Estadísticas del dashboard
   stats = {
     ventasHoy: 12,
     ventasMes: 156,
@@ -32,7 +31,6 @@ export class DashboardComponent implements OnInit {
     totalProveedores: 28
   };
 
-  // Actividades recientes
   recentActivities = [
     {
       icon: 'cart-check',
@@ -71,7 +69,6 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
-  // Ventas por día (últimos 7 días)
   salesData = [
     { day: 'Lun', value: 8 },
     { day: 'Mar', value: 12 },
@@ -82,7 +79,6 @@ export class DashboardComponent implements OnInit {
     { day: 'Dom', value: 4 }
   ];
 
-  // Accesos rápidos según rol
   quickActions: any[] = [];
 
   ngOnInit(): void {
@@ -94,7 +90,6 @@ export class DashboardComponent implements OnInit {
   loadQuickActions(): void {
     const role = this.currentUser?.rol;
 
-    // Accesos rápidos según el rol del usuario
     const actions: Record<string, any[]> = {
       'ADMIN': [
         { label: 'Nueva Cotización', icon: 'file-earmark-text', route: '/ventas/cotizaciones', color: 'primary' },
@@ -124,8 +119,6 @@ export class DashboardComponent implements OnInit {
   }
 
   loadDashboardData(): void {
-    // Aquí se cargarían los datos reales desde un servicio
-    // Por ahora usamos datos mock
     console.log('Dashboard cargado para:', this.currentUser);
   }
 
@@ -145,7 +138,6 @@ export class DashboardComponent implements OnInit {
     this.authService.logout();
   }
 
-  // Método para formatear números
   formatNumber(num: number): string {
     return num.toLocaleString('es-PE');
   }

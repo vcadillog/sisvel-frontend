@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./facturacion.css']
 })
 export class FacturacionComponent {
-  // Datos mock para facturación
   facturas = [
     { id: 1, numero: 'F001-001', cliente: 'Construcciones SAC', fecha: new Date(), monto: 4050, estado: 'EMITIDA' },
     { id: 2, numero: 'F001-002', cliente: 'Metalurgica del Sur', fecha: new Date(), monto: 12000, estado: 'PAGADA' },

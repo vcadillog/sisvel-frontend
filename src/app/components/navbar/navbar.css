@@ -1,9 +1,8 @@
-/* Navbar - altura fija */
 .navbar {
   border-bottom: 1px solid #e9ecef;
   padding: 0.5rem 1rem;
-  min-height: 60px; /* Altura fija */
-  max-height: 60px; /* Altura fija */
+  min-height: 60px;
+  max-height: 60px;
   background-color: #ffffff !important;
   position: sticky;
   top: 0;
@@ -20,7 +19,6 @@
   color: #0a58ca;
 }
 
-/* Avatar */
 .avatar {
   width: 32px;
   height: 32px;
@@ -29,7 +27,6 @@
   text-transform: uppercase;
 }
 
-/* Enlaces de navegación */
 .nav-link {
   color: #495057;
   font-weight: 500;
@@ -48,7 +45,6 @@
   background-color: #e7f1ff;
 }
 
-/* Dropdown */
 .dropdown-menu {
   border: none;
   border-radius: 8px;
@@ -70,15 +66,13 @@
   background-color: #f8d7da;
 }
 
-/* Contenedor del router-outlet - Ocupa el resto de la pantalla */
 .content-container {
-  min-height: calc(100vh - 60px); /* Resta la altura del navbar */
+  min-height: calc(100vh - 60px);
   background-color: #f8f9fa;
   padding: 1.5rem;
   overflow-y: auto;
 }
 
-/* Responsive */
 @media (max-width: 992px) {
   .navbar-nav {
     padding: 0.5rem 0;

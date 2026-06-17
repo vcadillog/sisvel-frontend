@@ -21,14 +21,13 @@ export class VentasComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // Cargar datos reales desde servicios
     console.log('Panel de Ventas cargado');
     this.loadStats();
   }
 
   loadStats(): void {
     // Aquí se cargarían los datos reales desde el servicio
-    // Por ahora usamos datos mock
+    // Por ahora usamos datos de prueba
     // this.cotizacionService.getCotizaciones().subscribe(...)
   }
 

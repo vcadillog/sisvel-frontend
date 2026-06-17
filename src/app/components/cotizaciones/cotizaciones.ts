@@ -30,7 +30,6 @@ export class CotizacionesComponent implements OnInit {
   isEditing = false;
   selectedCotizacion: Cotizacion | null = null;
 
-  // Datos para estadísticas
   stats = {
     total: 0,
     pendientes: 0,
@@ -59,7 +58,6 @@ export class CotizacionesComponent implements OnInit {
       error: (error) => {
         console.error('Error al cargar cotizaciones:', error);
         this.isLoading = false;
-        // Datos mock para desarrollo
         this.loadMockData();
       }
     });
@@ -76,7 +74,6 @@ export class CotizacionesComponent implements OnInit {
   }
 
   loadMockData(): void {
-    // Datos de ejemplo para desarrollo
     this.cotizaciones = [
       {
         idCotizacion: 1,
@@ -168,14 +165,11 @@ export class CotizacionesComponent implements OnInit {
     this.isLoading = true;
     const formData = this.cotizacionForm.value;
 
-    // Aquí se enviaría al servicio
     console.log('Datos de cotización:', formData);
 
-    // Simular éxito
     setTimeout(() => {
       this.isLoading = false;
       this.toggleForm();
-      // Recargar datos
       this.loadData();
     }, 1000);
   }

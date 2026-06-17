@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
-    // MOCK para desarrollo
+    // Datos de prueba para desarrollo
     const mockUsers: LoginResponse[] = [
       { id: 1, username: 'admin', nombre: 'Admin', apellido: 'Sistema', email: 'admin@sisvel.com', rol: 'ADMIN', token: 'mock-token-admin' },
       { id: 2, username: 'ventas', nombre: 'Carlos', apellido: 'Perez', email: 'ventas@sisvel.com', rol: 'VENTAS', token: 'mock-token-ventas' },

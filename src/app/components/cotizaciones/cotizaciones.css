@@ -1,0 +1,32 @@
+.card {
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.btn-group-sm .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.4rem 0.7rem;
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+
+  .btn-group-sm .btn {
+    padding: 0.15rem 0.35rem;
+  }
+}

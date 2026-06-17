@@ -1,0 +1,169 @@
+<div class="container-fluid px-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <div>
+      <h1 class="h2 mb-0">
+        <i class="bi bi-file-earmark-text text-primary me-2"></i>Cotizaciones
+      </h1>
+      <p class="text-muted small">Gestión de cotizaciones para clientes</p>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="toggleForm()">
+        <i class="bi bi-plus-circle me-1"></i>
+        {{ showForm ? 'Cancelar' : 'Nueva Cotización' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="text-muted small">Total</h6>
+          <h3 class="fw-bold">{{ stats.total }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="text-muted small">Pendientes</h6>
+          <h3 class="fw-bold text-warning">{{ stats.pendientes }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="text-muted small">Aprobadas</h6>
+          <h3 class="fw-bold text-success">{{ stats.aprobadas }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+          <h6 class="text-muted small">Rechazadas</h6>
+          <h3 class="fw-bold text-danger">{{ stats.rechazadas }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulario -->
+  @if (showForm) {
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-header bg-transparent border-0">
+        <h5 class="mb-0">
+          {{ isEditing ? 'Editar Cotización' : 'Nueva Cotización' }}
+        </h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="cotizacionForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="idCliente" class="form-label">Cliente</label>
+              <select class="form-select" id="idCliente" formControlName="idCliente">
+                <option value="">Seleccione un cliente</option>
+                @for (cliente of clientes; track cliente.idCliente) {
+                  <option [value]="cliente.idCliente">{{ cliente.nombre }}</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" formControlName="observaciones" rows="1"></textarea>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary me-2" (click)="toggleForm()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+              @if (isLoading) {
+                <span class="spinner-border spinner-border-sm me-1"></span>
+              }
+              {{ isEditing ? 'Actualizar' : 'Registrar' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Tabla de Cotizaciones -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      @if (isLoading) {
+        <div class="text-center py-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Subtotal</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (cotizacion of cotizaciones; track cotizacion.idCotizacion) {
+                <tr>
+                  <td>{{ cotizacion.idCotizacion }}</td>
+                  <td>
+                    <strong>{{ cotizacion.cliente.nombre }}</strong>
+                    <br>
+                    <small class="text-muted">{{ getTipoClienteTexto(cotizacion.cliente.tipoCliente) }}</small>
+                  </td>
+                  <td>{{ cotizacion.fecha | date:'dd/MM/yyyy' }}</td>
+                  <td>S/. {{ cotizacion.subtotal | number:'1.2-2' }}</td>
+                  <td>
+                    <strong>S/. {{ cotizacion.total | number:'1.2-2' }}</strong>
+                    @if (cotizacion.descuento > 0) {
+                      <br>
+                      <small class="text-success">-{{ cotizacion.descuento }}%</small>
+                    }
+                  </td>
+                  <td>
+                    <span [class]="getEstadoBadge(cotizacion.estado)">
+                      {{ getEstadoTexto(cotizacion.estado) }}
+                    </span>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      @if (cotizacion.estado === 'PENDIENTE') {
+                        <button class="btn btn-success" (click)="aprobarCotizacion(cotizacion.idCotizacion)" title="Aprobar">
+                          <i class="bi bi-check-lg"></i>
+                        </button>
+                      }
+                      <button class="btn btn-warning" (click)="editarCotizacion(cotizacion)" title="Editar">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button class="btn btn-danger" (click)="eliminarCotizacion(cotizacion.idCotizacion)" title="Eliminar">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="7" class="text-center text-muted py-4">
+                    <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                    No hay cotizaciones registradas
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </div>
+</div>

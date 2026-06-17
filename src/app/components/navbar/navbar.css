@@ -1,0 +1,102 @@
+/* Navbar - altura fija */
+.navbar {
+  border-bottom: 1px solid #e9ecef;
+  padding: 0.5rem 1rem;
+  min-height: 60px; /* Altura fija */
+  max-height: 60px; /* Altura fija */
+  background-color: #ffffff !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+.navbar-brand:hover {
+  color: #0a58ca;
+}
+
+/* Avatar */
+.avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Enlaces de navegación */
+.nav-link {
+  color: #495057;
+  font-weight: 500;
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+}
+
+.nav-link.active {
+  color: #0d6efd;
+  background-color: #e7f1ff;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  min-width: 180px;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  transition: all 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-item.text-danger:hover {
+  background-color: #f8d7da;
+}
+
+/* Contenedor del router-outlet - Ocupa el resto de la pantalla */
+.content-container {
+  min-height: calc(100vh - 60px); /* Resta la altura del navbar */
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navbar-nav {
+    padding: 0.5rem 0;
+  }
+
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+}

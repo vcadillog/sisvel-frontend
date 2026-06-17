@@ -1,0 +1,112 @@
+<div class="container-fluid px-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <div>
+      <h1 class="h2 mb-0">
+        <i class="bi bi-cart text-primary me-2"></i>Pedidos
+      </h1>
+      <p class="text-muted small">Gestión de pedidos de clientes</p>
+    </div>
+    <button class="btn btn-primary" (click)="toggleForm()">
+      <i class="bi bi-plus-circle me-1"></i>
+      {{ showForm ? 'Cancelar' : 'Nuevo Pedido' }}
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-2">
+      <div class="card shadow-sm border-0"><div class="card-body text-center"><h6 class="text-muted small">Total</h6><h3 class="fw-bold">{{ stats.total }}</h3></div></div>
+    </div>
+    <div class="col-6 col-md-2">
+      <div class="card shadow-sm border-0"><div class="card-body text-center"><h6 class="text-muted small">Pendientes</h6><h3 class="fw-bold text-warning">{{ stats.pendientes }}</h3></div></div>
+    </div>
+    <div class="col-6 col-md-2">
+      <div class="card shadow-sm border-0"><div class="card-body text-center"><h6 class="text-muted small">Despachados</h6><h3 class="fw-bold text-primary">{{ stats.despachados }}</h3></div></div>
+    </div>
+    <div class="col-6 col-md-2">
+      <div class="card shadow-sm border-0"><div class="card-body text-center"><h6 class="text-muted small">Entregados</h6><h3 class="fw-bold text-success">{{ stats.entregados }}</h3></div></div>
+    </div>
+    <div class="col-6 col-md-2">
+      <div class="card shadow-sm border-0"><div class="card-body text-center"><h6 class="text-muted small">Cancelados</h6><h3 class="fw-bold text-danger">{{ stats.cancelados }}</h3></div></div>
+    </div>
+  </div>
+
+  <!-- Formulario (placeholder) -->
+  @if (showForm) {
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-body">
+        <p class="text-muted">Formulario de registro de pedidos en desarrollo</p>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-secondary me-2" (click)="toggleForm()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Registrar</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Tabla -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fecha</th>
+              <th>Entrega</th>
+              <th>Monto</th>
+              <th>Comprobante</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (pedido of pedidos; track pedido.idPedido) {
+              <tr>
+                <td>{{ pedido.idPedido }}</td>
+                <td>{{ pedido.fechaPedido | date:'dd/MM/yyyy' }}</td>
+                <td>{{ pedido.fechaEntrega | date:'dd/MM/yyyy' }}</td>
+                <td><strong>S/. {{ pedido.montoTotal | number:'1.2-2' }}</strong></td>
+                <td>{{ pedido.tipoComprobante }}</td>
+                <td><span [class]="getEstadoBadge(pedido.estado)">{{ getEstadoTexto(pedido.estado) }}</span></td>
+                <td>
+                  <div class="btn-group btn-group-sm">
+                    @if (pedido.estado === 'PENDIENTE') {
+                      <button class="btn btn-primary" (click)="cambiarEstado(pedido.idPedido, 'CONFIRMADO')" title="Confirmar">
+                        <i class="bi bi-check-lg"></i>
+                      </button>
+                      <button class="btn btn-success" (click)="cambiarEstado(pedido.idPedido, 'DESPACHADO')" title="Despachar">
+                        <i class="bi bi-truck"></i>
+                      </button>
+                    }
+                    @if (pedido.estado === 'DESPACHADO') {
+                      <button class="btn btn-success" (click)="cambiarEstado(pedido.idPedido, 'ENTREGADO')" title="Entregar">
+                        <i class="bi bi-box-seam"></i>
+                      </button>
+                    }
+                    @if (pedido.estado !== 'ENTREGADO' && pedido.estado !== 'CANCELADO') {
+                      <button class="btn btn-danger" (click)="cambiarEstado(pedido.idPedido, 'CANCELADO')" title="Cancelar">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    }
+                    <button class="btn btn-warning" title="Editar">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="7" class="text-center text-muted py-4">
+                  <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                  No hay pedidos registrados
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

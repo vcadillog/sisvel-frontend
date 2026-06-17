@@ -1,0 +1,312 @@
+<div class="container-fluid px-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <div>
+      <h1 class="h2 mb-0">
+        <i class="bi bi-speedometer2 text-primary me-2"></i>Dashboard
+      </h1>
+      <p class="text-muted small mb-0">
+        {{ getSaludo() }}, {{ getNombreCompleto() }}
+        <span class="badge bg-primary ms-2">{{ currentUser?.rol }}</span>
+      </p>
+      <p class="text-muted small">
+        <i class="bi bi-calendar me-1"></i>
+        {{ currentDate | date: 'EEEE, d MMMM yyyy' }}
+      </p>
+    </div>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <button class="btn btn-sm btn-outline-primary me-2">
+        <i class="bi bi-download me-1"></i> Exportar
+      </button>
+      <button class="btn btn-sm btn-primary">
+        <i class="bi bi-plus-circle me-1"></i> Nuevo Pedido
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-primary bg-opacity-10 rounded-3">
+                <i class="bi bi-cart-check fs-3 text-primary"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Ventas Hoy</h6>
+              <h3 class="mb-0 fw-bold">{{ stats.ventasHoy }}</h3>
+              <span class="badge bg-success bg-opacity-10 text-success small">
+                <i class="bi bi-arrow-up me-1"></i> +12% vs ayer
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-warning bg-opacity-10 rounded-3">
+                <i class="bi bi-clock-history fs-3 text-warning"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Pedidos Pendientes</h6>
+              <h3 class="mb-0 fw-bold">{{ stats.pedidosPendientes }}</h3>
+              <span class="badge bg-warning bg-opacity-10 text-warning small">
+                <i class="bi bi-exclamation-triangle me-1"></i> Requieren atención
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-danger bg-opacity-10 rounded-3">
+                <i class="bi bi-exclamation-diamond fs-3 text-danger"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Stock Crítico</h6>
+              <h3 class="mb-0 fw-bold">{{ stats.stockCritico }}</h3>
+              <span class="badge bg-danger bg-opacity-10 text-danger small">
+                <i class="bi bi-arrow-down me-1"></i> Por debajo de mínimo
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-info bg-opacity-10 rounded-3">
+                <i class="bi bi-people fs-3 text-info"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Empleados Hoy</h6>
+              <h3 class="mb-0 fw-bold">{{ stats.empleadosHoy }}</h3>
+              <span class="badge bg-info bg-opacity-10 text-info small">
+                <i class="bi bi-check-circle me-1"></i> {{ stats.empleadosTotal }} total
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segunda fila de stats -->
+  <div class="row g-3 mb-4">
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-success bg-opacity-10 rounded-3">
+                <i class="bi bi-people fs-3 text-success"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Clientes Activos</h6>
+              <h3 class="mb-0 fw-bold">{{ formatNumber(stats.totalClientes) }}</h3>
+              <span class="badge bg-success bg-opacity-10 text-success small">
+                <i class="bi bi-arrow-up me-1"></i> +5% este mes
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-purple bg-opacity-10 rounded-3">
+                <i class="bi bi-building fs-3 text-purple"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Proveedores</h6>
+              <h3 class="mb-0 fw-bold">{{ stats.totalProveedores }}</h3>
+              <span class="badge bg-purple bg-opacity-10 text-purple small">
+                <i class="bi bi-check-circle me-1"></i> Activos
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-secondary bg-opacity-10 rounded-3">
+                <i class="bi bi-boxes fs-3 text-secondary"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Stock Total</h6>
+              <h3 class="mb-0 fw-bold">{{ formatNumber(stats.stockTotal) }}</h3>
+              <span class="badge bg-secondary bg-opacity-10 text-secondary small">
+                <i class="bi bi-box me-1"></i> Unidades
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+      <div class="card h-100 shadow-sm border-0 rounded-3 dashboard-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="p-3 bg-red bg-opacity-10 rounded-3">
+                <i class="bi bi-x-circle fs-3 text-red"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1 small text-uppercase fw-semibold">Pedidos Rechazados</h6>
+              <h3 class="mb-0 fw-bold">{{ stats.pedidosRechazados }}</h3>
+              <span class="badge bg-red bg-opacity-10 text-red small">
+                <i class="bi bi-exclamation-circle me-1"></i> Por falta de stock
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráfico y actividades -->
+  <div class="row g-3">
+    <!-- Gráfico de ventas (simulado con cards) -->
+    <div class="col-xl-8">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-transparent border-0 pt-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="bi bi-graph-up text-primary me-2"></i>Ventas Última Semana
+            </h5>
+            <span class="badge bg-primary bg-opacity-10 text-primary">Esta semana</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="d-flex align-items-end justify-content-between" style="height: 200px;">
+            @for (item of salesData; track item.day) {
+              <div class="text-center" style="flex: 1;">
+                <div class="bar-chart-item"
+                     style="height: {{ (item.value / 18) * 160 }}px;
+                            background: linear-gradient(180deg, #0d6efd 0%, #6ea8fe 100%);
+                            width: 30px;
+                            border-radius: 4px 4px 0 0;
+                            margin: 0 auto;
+                            transition: height 0.3s ease;">
+                </div>
+                <small class="text-muted mt-1 d-block">{{ item.day }}</small>
+                <span class="badge bg-light text-dark small">{{ item.value }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actividades Recientes -->
+    <div class="col-xl-4">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-transparent border-0 pt-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="bi bi-activity text-primary me-2"></i>Actividad Reciente
+            </h5>
+            <a href="#" class="text-primary small text-decoration-none">Ver todas</a>
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="list-group list-group-flush">
+            @for (activity of recentActivities; track activity) {
+              <div class="list-group-item d-flex align-items-center border-0 px-0 py-2">
+                <div class="flex-shrink-0">
+                  <span class="badge bg-{{ activity.color }}-subtle text-{{ activity.color }} p-2 rounded-3">
+                    <i class="bi bi-{{ activity.icon }}"></i>
+                  </span>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <p class="mb-0 small">{{ activity.text }}</p>
+                  <span class="text-muted small">{{ activity.user }} · {{ activity.time }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accesos Rápidos -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-transparent border-0 pt-3">
+          <h5 class="mb-0">
+            <i class="bi bi-grid-3x3-gap-fill text-primary me-2"></i>Accesos Rápidos
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-2">
+            @for (action of quickActions; track action) {
+              <div class="col-md-3 col-6">
+                <a [routerLink]="action.route" class="text-decoration-none">
+                  <div class="quick-action-card p-3 rounded-3 text-center border hover-shadow">
+                    <div class="p-2 bg-{{ action.color }} bg-opacity-10 rounded-3 d-inline-block mb-2">
+                      <i class="bi bi-{{ action.icon }} fs-4 text-{{ action.color }}"></i>
+                    </div>
+                    <p class="mb-0 small fw-medium">{{ action.label }}</p>
+                  </div>
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer con logout -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body text-center">
+          <p class="text-muted small mb-2">
+            <i class="bi bi-shield-check text-primary me-1"></i>
+            Sistema SISVEL v1.0.0
+          </p>
+          <button class="btn btn-sm btn-outline-danger" (click)="logout()">
+            <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

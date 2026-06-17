@@ -1,0 +1,219 @@
+/* Estilos para el Panel de Ventas */
+
+/* Tarjetas de estadísticas */
+.stats-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.stats-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tarjetas de acceso rápido */
+.quick-access-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.quick-access-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+  border-color: #0d6efd;
+}
+
+.quick-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Badges personalizados */
+.badge.bg-success-subtle {
+  background-color: #d1e7dd !important;
+  color: #0f5132 !important;
+}
+
+.badge.bg-warning-subtle {
+  background-color: #fff3cd !important;
+  color: #664d03 !important;
+}
+
+.badge.bg-info-subtle {
+  background-color: #cff4fc !important;
+  color: #055160 !important;
+}
+
+.badge.bg-primary-subtle {
+  background-color: #cfe2ff !important;
+  color: #084298 !important;
+}
+
+.badge.bg-danger-subtle {
+  background-color: #f8d7da !important;
+  color: #842029 !important;
+}
+
+/* Badges con opacidad */
+.badge.bg-success.bg-opacity-10 {
+  background-color: rgba(25, 135, 84, 0.1) !important;
+  color: #198754 !important;
+}
+
+.badge.bg-warning.bg-opacity-10 {
+  background-color: rgba(255, 193, 7, 0.1) !important;
+  color: #ffc107 !important;
+}
+
+.badge.bg-info.bg-opacity-10 {
+  background-color: rgba(13, 202, 240, 0.1) !important;
+  color: #0dcaf0 !important;
+}
+
+.badge.bg-primary.bg-opacity-10 {
+  background-color: rgba(13, 110, 253, 0.1) !important;
+  color: #0d6efd !important;
+}
+
+/* Botones */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: #fff;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+/* Lista de actividad reciente */
+.list-group-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* Colores de texto */
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.text-success {
+  color: #198754 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-info {
+  color: #0dcaf0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-card .card-body {
+    padding: 1rem !important;
+  }
+
+  .stats-card h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .quick-access-card .card-body {
+    padding: 1.5rem !important;
+  }
+
+  .quick-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .quick-icon i {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .stats-card h6 {
+    font-size: 0.6rem !important;
+  }
+
+  .quick-access-card .card-body {
+    padding: 1rem !important;
+  }
+
+  .quick-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .quick-icon i {
+    font-size: 1.25rem !important;
+  }
+
+  .btn {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats-card {
+  animation: fadeInUp 0.4s ease;
+}
+
+.stats-card:nth-child(1) { animation-delay: 0.05s; }
+.stats-card:nth-child(2) { animation-delay: 0.1s; }
+.stats-card:nth-child(3) { animation-delay: 0.15s; }
+.stats-card:nth-child(4) { animation-delay: 0.2s; }
+
+.quick-access-card {
+  animation: fadeInUp 0.5s ease;
+}
+
+.quick-access-card:nth-child(1) { animation-delay: 0.1s; }
+.quick-access-card:nth-child(2) { animation-delay: 0.15s; }
+.quick-access-card:nth-child(3) { animation-delay: 0.2s; }

@@ -1,0 +1,203 @@
+/* Estilos generales */
+.dashboard-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Colores personalizados */
+.bg-purple {
+  background-color: #6f42c1 !important;
+}
+
+.text-purple {
+  color: #6f42c1 !important;
+}
+
+.bg-purple.bg-opacity-10 {
+  background-color: rgba(111, 66, 193, 0.1) !important;
+}
+
+.bg-red {
+  background-color: #dc3545 !important;
+}
+
+.text-red {
+  color: #dc3545 !important;
+}
+
+.bg-red.bg-opacity-10 {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+/* Badges con colores personalizados */
+.bg-success-subtle {
+  background-color: #d1e7dd !important;
+  color: #0f5132 !important;
+}
+
+.bg-warning-subtle {
+  background-color: #fff3cd !important;
+  color: #664d03 !important;
+}
+
+.bg-danger-subtle {
+  background-color: #f8d7da !important;
+  color: #842029 !important;
+}
+
+.bg-info-subtle {
+  background-color: #cff4fc !important;
+  color: #055160 !important;
+}
+
+.bg-primary-subtle {
+  background-color: #cfe2ff !important;
+  color: #084298 !important;
+}
+
+.bg-secondary-subtle {
+  background-color: #e2e3e5 !important;
+  color: #41464b !important;
+}
+
+/* Gráfico de barras */
+.bar-chart-item {
+  transition: height 0.5s ease;
+  position: relative;
+}
+
+.bar-chart-item:hover {
+  opacity: 0.8;
+  transform: scaleY(1.05);
+  transform-origin: bottom;
+}
+
+/* Tarjetas de accesos rápidos */
+.quick-action-card {
+  transition: all 0.2s ease;
+  border: 1px solid #e9ecef;
+  background-color: #ffffff;
+}
+
+.quick-action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #0d6efd;
+  background-color: #f8f9fa;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Lista de actividades */
+.list-group-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-card {
+    margin-bottom: 0.5rem;
+  }
+
+  .quick-action-card {
+    padding: 0.75rem !important;
+  }
+
+  .quick-action-card .bi {
+    font-size: 1.25rem !important;
+  }
+
+  .bar-chart-item {
+    width: 20px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1rem !important;
+  }
+
+  h1.h2 {
+    font-size: 1.5rem;
+  }
+
+  .stats-number {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-card {
+  animation: fadeInUp 0.5s ease;
+}
+
+.dashboard-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.dashboard-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dashboard-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.dashboard-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Estilos para badges de estado */
+.badge {
+  font-weight: 500;
+}
+
+/* Mejoras para tablas en dispositivos móviles */
+.table-responsive {
+  border-radius: 8px;
+}
+
+/* Estilos para el footer */
+footer {
+  border-top: 1px solid #e9ecef;
+}

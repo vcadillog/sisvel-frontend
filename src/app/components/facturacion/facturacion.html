@@ -1,0 +1,60 @@
+<div class="container-fluid px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <div>
+      <h1 class="h2 mb-0">
+        <i class="bi bi-receipt text-primary me-2"></i>Facturación
+      </h1>
+      <p class="text-muted small">Gestión de facturas y boletas</p>
+    </div>
+    <button class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1"></i>Nueva Factura
+    </button>
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Monto</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (factura of facturas; track factura.id) {
+              <tr>
+                <td>{{ factura.numero }}</td>
+                <td>{{ factura.cliente }}</td>
+                <td>{{ factura.fecha | date:'dd/MM/yyyy' }}</td>
+                <td><strong>S/. {{ factura.monto | number:'1.2-2' }}</strong></td>
+                <td><span [class]="getEstadoBadge(factura.estado)">{{ getEstadoTexto(factura.estado) }}</span></td>
+                <td>
+                  <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-primary" title="Ver">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary" title="Descargar">
+                      <i class="bi bi-download"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="6" class="text-center text-muted py-4">
+                  <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                  No hay facturas registradas
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
